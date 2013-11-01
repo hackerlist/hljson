@@ -17,11 +17,18 @@ type HlMission struct {
 	Title       string  `json:"title"`
 	Description string  `json:"description"`
 	Slug        string  `json:"slug"`
-	OrgId       string  `json:"orgid"`
+  LogoUrl     string  `json:"logo_url"`
+  OrgName     string  `json:"org_name"`
+	OrgId       int     `json:"orgid"`
+  Status      string  `json:"status"`
+  Urgency     string  `json:"urgency"`
+  Visibility  string  `json:"visibility"`
+  BudgetEst   float64 `json:"est_budget"`
 	BudgetMin   float64 `json:"budget_min"`
 	BudgetMax   float64 `json:"budget_max"`
 	Created     string  `json:"created"`
 	Modified    string  `json:"modified"`
 	StartTime   string  `json:"starttime"`
 	EndTime     string  `json:"endtime"`
+  Enabled     bool    `json:"enabled"`
 }
