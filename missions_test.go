@@ -8,43 +8,24 @@ import (
 	"testing"
 )
 
-func TestMissions(t *testing.T) {
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-
-	client := &http.Client{Transport: tr}
-
-	url := ApiTest + ApiEndpoint + MissionEndpoint
-
-	resp, err := client.Get(url)
+func TestMissions2(t *testing.T) {
+	mis, err := GetMissions()
 
 	if err != nil {
-		t.Fatal("http.Get error:", err)
+		t.Fatalf("Error retreiving missions: %s", err)
 	}
 
-	defer resp.Body.Close()
+	for _, m := range mis {
+		if len(m.Title) <= 0 {
+			t.Errorf("mid %d has empty title", m.Id)
+		}
 
-	body, _ := ioutil.ReadAll(resp.Body)
+		if m.BudgetEst <= 0 {
+			t.Errorf("mid %d budget_est <= 0", m.Id)
+		}
 
-	var hlresp HlResponse
-	err = json.Unmarshal(body, &hlresp)
-
-	if err != nil {
-		t.Fatal("unmarshal error:", err)
-	}
-
-	var hlmissions HlMissionResponse
-
-	err = json.Unmarshal([]byte(*hlresp.Response), &hlmissions)
-
-	if err != nil {
-		t.Fatal("mission unmarshal error:", err)
-	}
-
-	for _, m := range hlmissions.Missions {
 		t.Logf("Title: %s\n", m.Title)
 		t.Logf("Description: %s\n", m.Description)
-		t.Logf("Budget: %f-%f\n", m.BudgetMin, m.BudgetMax)
+		t.Logf("Budget Est: %f\n", m.BudgetEst)
 	}
 }
