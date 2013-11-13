@@ -1,10 +1,6 @@
 package hljson
 
 import (
-	"crypto/tls"
-	"encoding/json"
-	"io/ioutil"
-	"net/http"
 	"testing"
 )
 

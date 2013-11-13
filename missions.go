@@ -18,19 +18,19 @@ type HlMissionResponse struct {
 
 // HlMission contains data about each individual mission.
 type HlMission struct {
-	Id          int    `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Slug        string `json:"slug"`
-	Openings    int    `json:"openings"`
-	//	Org     Organization    `json:"org"`
-	SuperId    int     `json:"superid"`
-	OrgId      int     `json:"orgid"`
-	Status     string  `json:"status"`
-	Urgency    string  `json:"urgency"`
-	Visibility string  `json:"visibility"`
-	BudgetEst  float64 `json:"est_budget"`
-	Enabled    bool    `json:"enabled"`
+	Id          int            `json:"id"`
+	Title       string         `json:"title"`
+	Description string         `json:"description"`
+	Slug        string         `json:"slug"`
+	Openings    int            `json:"openings"`
+	Org         HlOrganization `json:"org"`
+	SuperId     int            `json:"superid"`
+	OrgId       int            `json:"orgid"`
+	Status      string         `json:"status"`
+	Urgency     string         `json:"urgency"`
+	Visibility  string         `json:"visibility"`
+	BudgetEst   float64        `json:"est_budget"`
+	Enabled     bool           `json:"enabled"`
 	// XXX These should be *time.Time when the server emits
 	// the proper format.
 	Created   string `json:"created"`
